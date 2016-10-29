@@ -1,55 +1,59 @@
 #ifndef PRODUCT_H_INCLUDED
 #define PRODUCT_H_INCLUDED
-#endif // PRODUCT_H_INCLUDED
 
-#ifndef STRING
-#define STRING
 #include <string>
-#endif // STRING
+using std::string;
 
-class Products {
+class Product{
 
     public:
-        Products()
+        Product()
         {
-            id_product=0;
-            product_name="";
-            cost=0.0; //^_^
+            id_product = 0;
+            product_name = "";
+            cost = 0.0; //^_^
         }
         // id продукта
-      void set_id_product(int id)
+        Product(int id_product, string product_name, float cost)
+        {
+            this -> id_product = id_product;
+            this -> product_name = product_name;
+            this -> cost = cost;
+        }
+      void setIdProduct(int id)
         {
             id_product = id;
         }
         // Получение id
-        int get_id_product()
+        int getIdProduct()
         {
             return id_product;
         }
         // Название продукта
-        void set_product_name(std::string name)
+        void setProductName(string name)
         {
             product_name = name;
         }
         // Возврат названия
-        std::string get_product_name()
+        string getProductName()
         {
             return product_name;
         }
            // стоимость продукта
-      void set_cost(float cost_product)
+      void setCost(float cost_product)
         {
             cost = cost_product;
         }
         // Получение стоимости
-        float get_cost()
+        float getCost()
         {
             return cost;
         }
     private:
         int id_product;
         // Имя
-        std::string product_name;
+        string product_name;
         // Фамилия
         float cost;
 };
+#endif // PRODUCT_H_INCLUDED

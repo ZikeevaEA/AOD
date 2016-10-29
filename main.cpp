@@ -1,107 +1,92 @@
 #include <iostream>
-#include "Clients.h"
-#include "Product.h"
-#include "VipClients.h"
+#include "clients.h"
+#include "product.h"
+#include "vip_clients.h"
+#include "list.h"
 
-#ifndef STRING
-#define STRING
 #include <string>
-#endif // STRING
+
+using std::string;
+using std::cout;
+using std::cin;
 
 int main()
 {
-    // Создание объекта класса Client
-    Clients Client;
+    LinkedList linkedlist;
+    Client *client;
+
     int id_client;
-
-    std::cout << "client id " ;
-    std::cin >> id_client;
-
-    Client.set_id_client(id_client);
-
-    std::string name;
-    std::string last_name;
-
+    string name;
+    string last_name;
+    string phone;
+    for (int i = 0; i < 3; i++)
+    {
+    // Создание объекта класса Client
+    cout << "client id " ;
+    cin >> id_client;
     // Ввод имени
-    std::cout << "Name: ";
-    std::cin>>name;
-
+    cout << "Name: ";
+    cin >> name;
     // Ввод фамилии
-    std::cout << "Last name: ";
+    cout << "Last name: ";
+    cin >> last_name;
+    cout << "Phone " << ": ";
+    cin >> phone;
+    client = new Client(id_client, phone, name, last_name);
+    linkedlist.add(client);
+    }
 
-    std::cin>>last_name;
+    linkedlist.printList();
 
-    // Сохранение ФИ в объект класса Clients
-    Client.set_name(name);
-	Client.set_last_name(last_name);
-
-    std::string phone;
-    std::cout << "Phone " << ": ";
-    std::cin >> phone;
-    Client.set_phone(phone);
-
-	// Выводим данные по клиенту
-    std::cout << "\nClient name: " << Client.get_name() << "\n last name: "
-         << Client.get_last_name() << "\n phone: "
-         << Client.get_phone()<<"\n ************************** \n";
 
     //*******************************************************
-    Products product;
 
     int id_product;
-    std::cout << "product id " ;
-    std::cin >> id_product;
+    cout << "product id ";
+    cin >> id_product;
 
-    product.set_id_product(id_product);
 
-    std::string name_product;
+    string name_product;
     // Ввод имени
-    std::cout << "Name: ";
-    std::cin>>name_product;
-    product.set_product_name(name_product);
-    float cost;
-    std::cout << "Cost " ;
-    std::cin >> cost;
-    product.set_cost(cost);
+    cout << "Name: ";
+    cin >> name_product;
 
-    std::cout << "\nProduct name: " << product.get_product_name() << "\n price: "
-    << product.get_cost()<<"\n ************************** \n";
+    float cost;
+    cout << "Cost " ;
+    cin >> cost;
+
+    Product product(id_product, name_product, cost);
+
+    cout << "\nProduct name: " << product.getProductName() << "\n price: "
+    << product.getCost() << "\n ************************** \n";
 
 //********************************************************************
-    VipClients VipClient;
 
-    std::cout << "client id " ;
-    std::cin >> id_client;
-
-    VipClient.set_id_client(id_client);
+    cout << "Vip Client id " ;
+    cin >> id_client;
 
     // Ввод имени
-    std::cout << "Name: ";
-    std::cin>>name;
+    cout << "Name: ";
+    cin >> name;
 
     // Ввод фамилии
-    std::cout << "Last name: ";
-    std::cin>>last_name;
+    cout << "Last name: ";
+    cin >> last_name;
 
-    // Сохранение ФИ в объект класса Clients
-    VipClient.set_name(name);
-	VipClient.set_last_name(last_name);
 
-    std::cout << "Phone:";
-    std::cin >> phone;
-    VipClient.set_phone(phone);
+    cout << "Phone:";
+    cin >> phone;
 
     int discount;
-    std::cout << "Discount: %" ;
-    std::cin >> discount;
-    VipClient.set_discount(discount);
-    VipClient.apply_discount(&cost);
-     std::cout  << "\nVipClient name: " << VipClient.get_name()
-                << "\n last name: " << VipClient.get_last_name()
-                << "\n phone: "  << VipClient.get_phone()
-                << "\nDiscount:" << VipClient.get_discount()
-                << "\n Price for product with discount: " << cost
-                <<"\n ************************** \n";
+    cout << "Discount: %" ;
+    cin >> discount;
 
+    VipClient vip_client(id_client, phone, name, last_name, discount);
+
+
+    vip_client.applyDiscount(&cost);
+    cout  << vip_client.getVipClientInfo()
+          << "Price for product with discount: " << cost <<"\n"
+          << "************************** \n";
     return 0;
 }

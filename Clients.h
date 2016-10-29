@@ -1,66 +1,83 @@
 #ifndef CLIENTS_H
 #define CLIENTS_H
 
-#ifndef STRING
-#define STRING
 #include <string>
-#endif // STRING
+#include <sstream>
 
-class Clients {
+using std::string;
+class Client{
     public:
-        Clients()
+        Client()
         {
-            id_client=0;
-            phone ="";
-            name="";
-            last_name="";
+            id_client = 0;
+            phone = "";
+            name = "";
+            last_name = "";
+        }
+        Client(int id_client, string phone, string name, string last_name)
+        {
+            this -> id_client = id_client;
+            this -> phone = phone;
+            this -> name = name;
+            this -> last_name = last_name;
         }
         // id клиента
-      void set_id_client(int id)
+      void setIdClient(int id)
         {
             id_client = id;
         }
         // Получение id
-        int get_id_client()
+        int getIdClient()
         {
             return id_client;
         }
         // Имя клиента
-        void set_name(std::string client_name)
+        void setName(string client_name)
         {
             name = client_name;
         }
         // Возврат имени
-        std::string get_name()
+        string getName()
         {
             return name;
         }
         // Фамилия клиента
-        void set_last_name(std::string client_last_name)
+        void setLastName(string client_last_name)
         {
             last_name = client_last_name;
         }
         // Возврат фамилии
-        std::string get_last_name()
+        string getLastName()
         {
             return last_name;
         }
         //Телефон
-        void set_phone( std::string client_phone)
+        void setPhone( string client_phone)
         {
             phone = client_phone;
         }
-        std::string get_phone()
+        string getPhone()
         {
          return phone;
         }
-    private:
+
+        string getClientInfo()
+        {
+            std::stringstream out_str;
+            out_str <<"id Client: " << id_client << "\n"
+                    << "Last Name: " << last_name << "\n"
+                    << "Name: " << name << "\n"
+                    << "Phone: " << phone << "\n";
+            return out_str.str();
+        }
+
+    protected:
         int id_client;
-        std::string phone;
+        string phone;
         // Имя
-        std::string name;
+        string name;
         // Фамилия
-        std::string last_name;
+        string last_name;
 
 };
 #endif
